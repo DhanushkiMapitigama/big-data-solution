@@ -30,7 +30,7 @@ services:
       SERVICE_PRECONDITION: "hadoop-namenode:9870"
     env_file:
       - ./hadoop/hadoop.env
-  
+
   hadoop-resourcemanager:
     container_name: hadoop-resourcemanager
     restart: always
@@ -107,7 +107,7 @@ services:
       - shared-workspace:/opt/workspace
     depends_on:
       - spark-master
-  
+
   ####### JUPYTER
   jupyter-notebook:
     build: ./jupyter
