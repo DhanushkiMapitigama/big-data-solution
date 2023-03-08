@@ -1,9 +1,9 @@
-ARG debian_buster_image_tag=8-jre-slim
-FROM openjdk:${debian_buster_image_tag}
+FROM ubuntu:22.04
 
 ARG scala_version="2.12.10"
 ARG build_date
 ARG shared_workspace=/opt/workspace
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN mkdir -p ${shared_workspace}/data
 RUN mkdir -p /usr/share/man/man1
@@ -32,9 +32,11 @@ COPY workspace/ /workspace/
 
 RUN apt-get update -y
 RUN apt-get install -y python3-pip python3-dev
-RUN pip3 install --upgrade pip
-RUN pip3 install wget==3.2 pyspark==${spark_version} jupyterlab==${jupyterlab_version}
-RUN pip3 install pandas
+#RUN pip3 --timeout=1000 install --upgrade pip
+RUN pip3 --timeout=1000 install wget==3.2 
+#RUN pip3 --timeout=1000 install pyspark==${spark_version}
+RUN pip3 --timeout=1000 install jupyterlab==${jupyterlab_version}
+RUN pip3 --timeout=1000 install pandas
 
 #Scala kernel for Spark
 RUN apt-get install -y ca-certificates-java --no-install-recommends

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-$HADOOP_HOME/bin/yarn --config $HADOOP_CONF_DIR historyserver
+$HADOOP_HOME/bin/yarn --config /usr/local/hadoop-3.3.4/etc/hadoop historyserver
